@@ -1,11 +1,17 @@
-﻿namespace Claudiu_Cojocaru_Lab11;
+using Claudiu_Cojocaru_Lab11.Data;
 
-public partial class App : Application
+namespace Claudiu_Cojocaru_Lab11
 {
-	public App()
-	{
-		InitializeComponent();
+    public partial class App : Application
+    {
+        public static ShoppingListDatabase Database { get; private set; }
 
-		MainPage = new AppShell();
-	}
+        public App()
+        {
+            InitializeComponent();
+
+            Database = new ShoppingListDatabase(new RestService());
+            MainPage = new NavigationPage(new ListEntryPage());
+        }
+    }
 }
